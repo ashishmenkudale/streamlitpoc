@@ -1,8 +1,12 @@
+print('started rev01')
+
 import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
 from sklearn.ensemble import RandomForestClassifier
+
+print('imported packages')
 
 st.write("""
 # Penguin Prediction App
@@ -44,6 +48,8 @@ penguins_raw = pd.read_csv('./penguins_cleaned.csv')
 penguins = penguins_raw.drop(columns=['species'])
 df = pd.concat([input_df,penguins],axis=0)
 
+print('loaded default csv')
+
 # Encoding of ordinal features
 # https://www.kaggle.com/pratik1120/penguin-dataset-eda-classification-and-clustering
 encode = ['sex','island']
@@ -64,6 +70,8 @@ else:
 
 # Reads in saved classification model
 load_clf = pickle.load(open('penguins_clf.pkl', 'rb'))
+
+print('loaded default pickle')
 
 # Apply model to make predictions
 prediction = load_clf.predict(df)
